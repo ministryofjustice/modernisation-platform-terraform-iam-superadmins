@@ -4,10 +4,10 @@ This repository holds a Terraform module that creates set IAM accounts and assoc
 
 ## Usage
 ```
-  module "iam" {
-    source        = "github.com/ministryofjustice/modernisation-platform-terraform-iam-superadmins"
-    account_alias = "aws-account-alias"
-  }
+module "iam" {
+  source        = "github.com/ministryofjustice/modernisation-platform-terraform-iam-superadmins"
+  account_alias = "aws-account-alias"
+}
 ```
 
 ## Inputs
