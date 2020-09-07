@@ -14,3 +14,8 @@ module "iam" {
 |      Name     |               Description              |  Type  | Default | Required |
 |:-------------:|:--------------------------------------:|:------:|:-------:|----------|
 | account_alias | AWS IAM account alias for this account | string | n/a     | yes      |
+
+## Outputs
+| Name                 | Description                                                      | Sensitive |
+|----------------------|------------------------------------------------------------------|-----------|
+| superadmin_passwords | PGP-encrypted passwords for IAM users, if a pgp_key is specified | Yes       |
