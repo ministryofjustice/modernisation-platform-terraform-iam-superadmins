@@ -63,7 +63,7 @@ module "iam_user" {
 
   # The following is dependent on whether a PGP key has been set
   create_iam_user_login_profile = length(each.value) > 0 ? true : false
-  password_reset_required       = length(each.value) > 0 ? true : false
+  password_reset_required       = length(each.value) < 0 ? true : false
 }
 
 # AWS IAM Policy Document for Force MFA, as taken from:
