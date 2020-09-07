@@ -43,12 +43,15 @@ module "iam_group_admins_with_policies" {
 }
 
 module "iam_user" {
-  for_each                      = local.superadmin_users
-  source                        = "terraform-aws-modules/iam/aws//modules/iam-user"
-  version                       = "~> 2.0"
-  name                          = "${each.key}-superadmin"
-  force_destroy                 = true
-  pgp_key                       = each.value
+  for_each              = local.superadmin_users
+  source                = "terraform-aws-modules/iam/aws//modules/iam-user"
+  version               = "~> 2.0"
+  name                  = "${each.key}-superadmin"
+  force_destroy         = true
+  pgp_key               = each.value
+  create_iam_access_key = false
+
+  # The following is dependent on whether a PGP key has been set
   create_iam_user_login_profile = length(each.value) > 0 ? true : false
-  create_iam_access_key         = false
+  password_reset_required       = length(each.value) > 0 ? true : false
 }
