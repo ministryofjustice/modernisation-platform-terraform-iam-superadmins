@@ -29,6 +29,33 @@ module "iam_account" {
   require_uppercase_characters   = true
 }
 
+# Create assumable roles with managed policies
+module "iam_assumable_roles" {
+  source               = "terraform-aws-modules/iam/aws//modules/iam-assumable-roles"
+  version              = "~> 2.0"
+  max_session_duration = 43200
+
+  # Admin role
+  create_admin_role       = true
+  admin_role_name         = "superadmin"
+  admin_role_requires_mfa = true
+
+  # Poweruser role
+  create_poweruser_role       = true
+  poweruser_role_name         = "developer"
+  poweruser_role_requires_mfa = true
+
+  # Read-only role
+  create_readonly_role       = true
+  readonly_role_name         = "readonly"
+  readonly_role_requires_mfa = true
+
+  # Allow created users to assume these roles
+  trusted_role_arns = [
+    for superadmin in keys(local.superadmin_users) : module.iam_user[superadmin].this_iam_user_arn
+  ]
+}
+
 # Attach created users to a AWS IAM group, with several policies
 module "iam_group_admins_with_policies" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-group-with-policies"
@@ -40,7 +67,7 @@ module "iam_group_admins_with_policies" {
   ]
 
   custom_group_policy_arns = [
-    "arn:aws:iam::aws:policy/AdministratorAccess",
+    "arn:aws:iam::aws:policy/ReadOnlyAccess",
   ]
 
   custom_group_policies = [
