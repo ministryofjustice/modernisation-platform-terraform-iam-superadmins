@@ -19,3 +19,6 @@ module "iam" {
 | Name                 | Description                                                      | Sensitive |
 |----------------------|------------------------------------------------------------------|-----------|
 | superadmin_passwords | PGP-encrypted passwords for IAM users, if a pgp_key is specified | Yes       |
+
+## Looking for issues?
+If you're looking to raise an issue with this module, please create a new issue in the [Modernisation Platform repository](https://github.com/ministryofjustice/modernisation-platform/issues).
