@@ -52,7 +52,7 @@ module "iam_assumable_roles" {
 
   # Allow created users to assume these roles
   trusted_role_arns = [
-    for superadmin in keys(local.superadmin_users) : module.iam_user[superadmin].this_iam_user_arn
+    for user in module.iam_user : user.this_iam_user_arn
   ]
 }
 
@@ -63,7 +63,7 @@ module "iam_group_admins_with_policies" {
   name    = "superadmins"
 
   group_users = [
-    for superadmin in keys(local.superadmin_users) : module.iam_user[superadmin].this_iam_user_name
+    for user in module.iam_user : user.this_iam_user_name
   ]
 
   custom_group_policy_arns = [
