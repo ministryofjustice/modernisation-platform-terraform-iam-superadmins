@@ -74,6 +74,10 @@ module "iam_group_admins_with_policies" {
     {
       name   = "ForceMFA"
       policy = data.aws_iam_policy_document.force_mfa.json
+    },
+    {
+      name   = "AssumeRole"
+      policy = data.aws_iam_policy_document.assume_role.json
     }
   ]
 }
@@ -91,6 +95,23 @@ module "iam_user" {
   # The following is dependent on whether a PGP key has been set
   create_iam_user_login_profile = length(each.value) > 0 ? true : false
   password_reset_required       = length(each.value) < 0 ? true : false
+}
+
+# Allow users to assume roles
+data "aws_iam_policy_document" "assume_role" {
+  statement {
+    sid    = "AssumeRole"
+    effect = "Allow"
+    actions = [
+      "sts:AssumeRole"
+    ]
+    resources = ["*"]
+    condition {
+      test     = "BoolIfExists"
+      variable = "aws:MultiFactorAuthPresent"
+      values   = ["true"]
+    }
+  }
 }
 
 # AWS IAM Policy Document for Force MFA, as taken from:
