@@ -16,6 +16,7 @@ module "iam_account" {
   source        = "terraform-aws-modules/iam/aws//modules/iam-account"
   version       = "~> 2.0"
   account_alias = var.account_alias
+
   # Password policy rules
   allow_users_to_change_password = true
   create_account_password_policy = true
@@ -55,6 +56,8 @@ module "iam_assumable_roles" {
   trusted_role_arns = [
     for user in module.iam_user : user.this_iam_user_arn
   ]
+
+  depends_on = [module.iam_user]
 }
 
 # Attach created users to a AWS IAM group, with several policies
@@ -98,7 +101,7 @@ module "iam_user" {
   password_reset_required       = length(each.value) < 0 ? true : false
 }
 
-# Allow users to assume roles
+# Allow users to assume roles if MFA enabled
 data "aws_iam_policy_document" "assume_role" {
   statement {
     sid    = "AssumeRole"
