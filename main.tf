@@ -17,18 +17,9 @@ module "iam_account" {
   version       = "~> 2.0"
   account_alias = var.account_alias
 
-  # Password policy rules
-  allow_users_to_change_password = true
-  create_account_password_policy = true
-  get_caller_identity            = true
-  hard_expiry                    = false
-  max_password_age               = 0
-  minimum_password_length        = 8
-  password_reuse_prevention      = 5
-  require_lowercase_characters   = true
-  require_numbers                = true
-  require_symbols                = true
-  require_uppercase_characters   = true
+  # We create the password policy as part of `modernisation-platform-terraform-baselines` so
+  # we don't need to do it here as well
+  create_account_password_policy = false
 }
 
 # Create assumable roles with managed policies
