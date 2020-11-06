@@ -8,6 +8,7 @@ locals {
     "jake.mulley"   = ""
     "phil.horrocks" = ""
     "ewa.stempel"   = ""
+    "don.masters"   = ""
   }
 }
 
