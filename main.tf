@@ -8,6 +8,7 @@ locals {
     "ewa.stempel"    = ""
     "jake.mulley"    = ""
     "zuri.guardiola" = ""
+    "don.masters"    = ""
   }
 }
 
