@@ -5,10 +5,11 @@
 locals {
   superadmin_users = {
     "david.elliott"  = "keybase:davidkelliott"
+    "don.masters"    = ""
     "ewa.stempel"    = ""
     "jake.mulley"    = ""
+    "phil.horrocks"  = ""
     "zuri.guardiola" = ""
-    "don.masters"    = ""
   }
 }
 
