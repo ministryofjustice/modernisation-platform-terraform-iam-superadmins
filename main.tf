@@ -7,6 +7,7 @@ locals {
     "david.elliott"  = "keybase:davidkelliott"
     "don.masters"    = ""
     "ewa.stempel"    = ""
+    "fasih.rehman"   = ""
     "jack.stockley"  = ""
     "jake.mulley"    = ""
     "phil.horrocks"  = ""
