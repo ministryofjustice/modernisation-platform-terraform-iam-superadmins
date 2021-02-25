@@ -18,7 +18,7 @@ module "iam" {
 ## Outputs
 | Name                 | Description                                                      | Sensitive |
 |----------------------|------------------------------------------------------------------|-----------|
-| superadmin_passwords | PGP-encrypted passwords for IAM users, if a pgp_key is specified | yes       |
+| superadmin_passwords | PGP-encrypted passwords for IAM users, if a pgp_key is specified | no        |
 
 ## First-sign in and changing a password
 The included force_mfa IAM policy doesn't allow a user to change their password without MFA enabled. When onboarding a new superadmin,
