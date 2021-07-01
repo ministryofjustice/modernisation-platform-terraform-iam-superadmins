@@ -12,6 +12,7 @@ locals {
     "jake.mulley"    = ""
     "phil.horrocks"  = ""
     "zuri.guardiola" = ""
+    "stephen.linden" = ""
   }
 }
 
