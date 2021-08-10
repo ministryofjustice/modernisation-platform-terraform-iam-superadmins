@@ -13,7 +13,6 @@ locals {
     "phil.horrocks"       = ""
     "zuri.guardiola"      = ""
     "stephen.linden"      = ""
-    "george.fountopoulos" = ""
   }
 }
 
