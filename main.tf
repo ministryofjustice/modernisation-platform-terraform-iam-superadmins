@@ -4,16 +4,15 @@
 # - if a keybase key is provided, it will also create their user login profile
 locals {
   superadmin_users = {
-    "david.elliott"       = "keybase:davidkelliott"
-    "don.masters"         = ""
-    "ewa.stempel"         = ""
-    "fasih.rehman"        = "keybase:fasih_rehman"
-    "jack.stockley"       = ""
-    "jake.mulley"         = ""
-    "phil.horrocks"       = ""
-    "zuri.guardiola"      = ""
-    "stephen.linden"      = ""
-    "george.fountopoulos" = ""
+    "david.elliott"  = "keybase:davidkelliott"
+    "don.masters"    = ""
+    "ewa.stempel"    = ""
+    "fasih.rehman"   = "keybase:fasih_rehman"
+    "jack.stockley"  = ""
+    "jake.mulley"    = ""
+    "phil.horrocks"  = ""
+    "zuri.guardiola" = ""
+    "stephen.linden" = ""
   }
 }
 
