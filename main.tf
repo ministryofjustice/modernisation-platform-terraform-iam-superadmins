@@ -14,6 +14,7 @@ locals {
     "zuri.guardiola"      = ""
     "stephen.linden"      = ""
     "george.fountopoulos" = ""
+    "piotr.grzeskowiak"   = ""
   }
 }
 
