@@ -14,6 +14,9 @@ locals {
     "zuri.guardiola"      = ""
     "stephen.linden"      = ""
     "george.fountopoulos" = ""
+    "adrian.weetman"      = ""
+    "seb.norris"          = ""
+    "piotr.grzeskowiak"   = ""
   }
 }
 
