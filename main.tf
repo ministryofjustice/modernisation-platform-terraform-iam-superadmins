@@ -14,7 +14,6 @@ locals {
     "zuri.guardiola"      = ""
     "stephen.linden"      = ""
     "george.fountopoulos" = ""
-    "piotr.grzeskowiak"   = ""
   }
 }
 
@@ -34,6 +33,11 @@ resource "time_sleep" "wait_30_seconds" {
   depends_on = [module.iam_user]
 
   create_duration = "30s"
+
+  triggers = {
+    for user in module.iam_user : user.this_iam_user_name => user.this_iam_user_arn
+  }
+
 }
 
 # Create assumable roles with managed policies
