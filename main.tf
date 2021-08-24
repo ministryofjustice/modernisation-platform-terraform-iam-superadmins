@@ -28,6 +28,13 @@ module "iam_account" {
   create_account_password_policy = false
 }
 
+# sleep to allow time for user creation
+resource "time_sleep" "wait_30_seconds" {
+  depends_on = [module.iam_user]
+
+  create_duration = "30s"
+}
+
 # Create assumable roles with managed policies
 module "iam_assumable_roles" {
   source               = "terraform-aws-modules/iam/aws//modules/iam-assumable-roles"
@@ -54,7 +61,7 @@ module "iam_assumable_roles" {
     for user in module.iam_user : user.this_iam_user_arn
   ]
 
-  depends_on = [module.iam_user]
+  depends_on = [time_sleep.wait_30_seconds]
 }
 
 # Attach created users to a AWS IAM group, with several policies
