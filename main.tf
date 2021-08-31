@@ -10,7 +10,6 @@ locals {
     "fasih.rehman"        = "keybase:fasih_rehman"
     "jack.stockley"       = ""
     "jake.mulley"         = ""
-    "phil.horrocks"       = ""
     "zuri.guardiola"      = ""
     "stephen.linden"      = ""
     "george.fountopoulos" = ""
