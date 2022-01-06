@@ -5,6 +5,7 @@
 locals {
   superadmin_users = {
     "david.elliott"       = "keybase:davidkelliott"
+    "david.sibley"        = ""
     "don.masters"         = ""
     "ewa.stempel"         = ""
     "fasih.rehman"        = "keybase:fasih_rehman"
