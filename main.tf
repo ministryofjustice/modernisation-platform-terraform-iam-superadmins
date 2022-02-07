@@ -23,7 +23,7 @@ locals {
 # Create the initial IAM account referential
 module "iam_account" {
   source        = "terraform-aws-modules/iam/aws//modules/iam-account"
-  version       = "~> 2.0"
+  version       = "~> 4.11"
   account_alias = var.account_alias
 
   # We create the password policy as part of `modernisation-platform-terraform-baselines` so
@@ -38,7 +38,7 @@ resource "time_sleep" "wait_30_seconds" {
   create_duration = "30s"
 
   triggers = {
-    for user in module.iam_user : user.this_iam_user_name => user.this_iam_user_arn
+    for user in module.iam_user : user.iam_user_name => user.iam_user_arn
   }
 
 }
@@ -46,7 +46,7 @@ resource "time_sleep" "wait_30_seconds" {
 # Create assumable roles with managed policies
 module "iam_assumable_roles" {
   source               = "terraform-aws-modules/iam/aws//modules/iam-assumable-roles"
-  version              = "~> 2.0"
+  version              = "~> 4.11"
   max_session_duration = 43200
 
   # Admin role
@@ -66,7 +66,7 @@ module "iam_assumable_roles" {
 
   # Allow created users to assume these roles
   trusted_role_arns = [
-    for user in module.iam_user : user.this_iam_user_arn
+    for user in module.iam_user : user.iam_user_arn
   ]
 
   depends_on = [time_sleep.wait_30_seconds]
@@ -75,11 +75,11 @@ module "iam_assumable_roles" {
 # Attach created users to a AWS IAM group, with several policies
 module "iam_group_admins_with_policies" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-group-with-policies"
-  version = "~> 2.0"
+  version = "~> 4.11"
   name    = "superadmins"
 
   group_users = [
-    for user in module.iam_user : user.this_iam_user_name
+    for user in module.iam_user : user.iam_user_name
   ]
 
   custom_group_policy_arns = [
@@ -102,7 +102,7 @@ module "iam_group_admins_with_policies" {
 module "iam_user" {
   for_each              = local.superadmin_users
   source                = "terraform-aws-modules/iam/aws//modules/iam-user"
-  version               = "~> 2.0"
+  version               = "~> 4.11"
   name                  = "${each.key}-superadmin"
   force_destroy         = true
   pgp_key               = each.value
