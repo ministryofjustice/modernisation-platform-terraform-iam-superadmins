@@ -21,7 +21,7 @@ locals {
 # Create the initial IAM account referential
 module "iam_account" {
   source        = "terraform-aws-modules/iam/aws//modules/iam-account"
-  version       = "~> 4.11"
+  version       = "~> 5.2"
   account_alias = var.account_alias
 
   # We create the password policy as part of `modernisation-platform-terraform-baselines` so
