@@ -15,6 +15,7 @@ locals {
     "adrian.weetman"      = ""
     "seb.norris"          = ""
     "piotr.grzeskowiak"   = ""
+    "edward.proctor"      = ""
   }
 }
 
