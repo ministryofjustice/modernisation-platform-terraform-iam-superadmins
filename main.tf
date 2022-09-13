@@ -16,6 +16,7 @@ locals {
     "seb.norris"          = ""
     "piotr.grzeskowiak"   = ""
     "edward.proctor"      = ""
+    "julia.lawrence"      = ""
   }
 }
 
