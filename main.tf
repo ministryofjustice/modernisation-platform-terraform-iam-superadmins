@@ -46,7 +46,7 @@ resource "time_sleep" "wait_30_seconds" {
 # Create assumable roles with managed policies
 module "iam_assumable_roles" {
   source               = "terraform-aws-modules/iam/aws//modules/iam-assumable-roles"
-  version              = "~> 4.11"
+  version              = "~> 5.5"
   max_session_duration = 43200
 
   # Admin role
@@ -75,7 +75,7 @@ module "iam_assumable_roles" {
 # Attach created users to a AWS IAM group, with several policies
 module "iam_group_admins_with_policies" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-group-with-policies"
-  version = "~> 4.11"
+  version = "~> 5.5"
   name    = "superadmins"
 
   group_users = [
@@ -102,7 +102,7 @@ module "iam_group_admins_with_policies" {
 module "iam_user" {
   for_each              = local.superadmin_users
   source                = "terraform-aws-modules/iam/aws//modules/iam-user"
-  version               = "~> 4.11"
+  version               = "~> 5.5"
   name                  = "${each.key}-superadmin"
   force_destroy         = true
   pgp_key               = each.value
