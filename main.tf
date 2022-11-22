@@ -9,7 +9,6 @@ locals {
     "ewa.stempel"         = ""
     "jake.mulley"         = ""
     "stephen.linden"      = ""
-    "george.fountopoulos" = ""
     "edward.proctor"      = ""
     "julia.lawrence"      = ""
   }
