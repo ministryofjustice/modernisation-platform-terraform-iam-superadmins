@@ -10,7 +10,8 @@ locals {
     "jake.mulley"    = ""
     "stephen.linden" = ""
     "edward.proctor" = ""
-    "julia.lawrence" = ""
+    "mark.roberts"   = ""
+    "aaron.robinson" = ""
   }
 }
 
