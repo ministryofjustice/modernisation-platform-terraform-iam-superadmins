@@ -3,3 +3,4 @@
 .terraform.lock.hcl
 *.tfstate
 .DS_Store
+.idea
