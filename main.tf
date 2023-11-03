@@ -12,6 +12,7 @@ locals {
     "edward.proctor" = ""
     "mark.roberts"   = ""
     "aaron.robinson" = ""
+    "richard.green"  = ""
   }
 }
 
