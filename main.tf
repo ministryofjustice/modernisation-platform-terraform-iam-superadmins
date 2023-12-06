@@ -13,6 +13,7 @@ locals {
     "mark.roberts"   = ""
     "aaron.robinson" = ""
     "richard.green"  = ""
+    "khatra.farah"   = ""
   }
 }
 
