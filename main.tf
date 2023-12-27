@@ -15,6 +15,7 @@ locals {
     "richard.green"    = ""
     "sukeshreddy.gade" = ""
     "khatra.farah"     = ""
+    "mike.reid"        = ""
   }
 }
 
