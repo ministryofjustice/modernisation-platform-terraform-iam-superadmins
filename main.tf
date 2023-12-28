@@ -21,8 +21,7 @@ locals {
 
 # Create the initial IAM account referential
 module "iam_account" {
-  source        = "terraform-aws-modules/iam/aws//modules/iam-account"
-  version       = "~> 5.2"
+  source        = git::https://github.com/terraform-aws-modules/terraform-aws-iam?ref=470b6ffa8e2888dd2699c1fce6010704dda5e2b3
   account_alias = var.account_alias
 
   # We create the password policy as part of `modernisation-platform-terraform-baselines` so
@@ -44,8 +43,7 @@ resource "time_sleep" "wait_30_seconds" {
 
 # Create assumable roles with managed policies
 module "iam_assumable_roles" {
-  source               = "terraform-aws-modules/iam/aws//modules/iam-assumable-roles"
-  version              = "~> 5.5"
+  source               = git::https://github.com/terraform-aws-modules/terraform-aws-iam?ref=761368e495ca04beaf5259c29fde5e107db7989f
   max_session_duration = 43200
 
   # Admin role
@@ -73,8 +71,7 @@ module "iam_assumable_roles" {
 
 # Attach created users to a AWS IAM group, with several policies
 module "iam_group_admins_with_policies" {
-  source  = "terraform-aws-modules/iam/aws//modules/iam-group-with-policies"
-  version = "~> 5.5"
+  source  = git::https://github.com/terraform-aws-modules/terraform-aws-iam?ref=eb5b21840bdb1e5549c24200920250692844bcee
   name    = "superadmins"
 
   group_users = [
@@ -100,8 +97,7 @@ module "iam_group_admins_with_policies" {
 # Create each user
 module "iam_user" {
   for_each              = local.superadmin_users
-  source                = "terraform-aws-modules/iam/aws//modules/iam-user"
-  version               = "~> 5.5"
+  source                = git::https://github.com/terraform-aws-modules/terraform-aws-iam?ref=9fa481f0c82496fb8f5722147a1d319528d772a5
   name                  = "${each.key}-superadmin"
   force_destroy         = true
   pgp_key               = each.value
