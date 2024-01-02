@@ -71,8 +71,8 @@ module "iam_assumable_roles" {
 
 # Attach created users to a AWS IAM group, with several policies
 module "iam_group_admins_with_policies" {
-  source  = "git::https://github.com/terraform-aws-modules/terraform-aws-iam.git//modules/iam-group-with-policies?ref=25e2bf9f9f4757a7014b55db981be9d2beeab445"
-  name    = "superadmins"
+  source = "git::https://github.com/terraform-aws-modules/terraform-aws-iam.git//modules/iam-group-with-policies?ref=25e2bf9f9f4757a7014b55db981be9d2beeab445"
+  name   = "superadmins"
 
   group_users = [
     for user in module.iam_user : user.iam_user_name
