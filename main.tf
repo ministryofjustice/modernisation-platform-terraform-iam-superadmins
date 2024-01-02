@@ -21,8 +21,7 @@ locals {
 
 # Create the initial IAM account referential
 module "iam_account" {
-  source        = "terraform-aws-modules/iam/aws//modules/iam-account"
-  version       = "~> 5.2"
+  source        = "git::https://github.com/terraform-aws-modules/terraform-aws-iam.git//modules/iam-account?ref=25e2bf9f9f4757a7014b55db981be9d2beeab445"
   account_alias = var.account_alias
 
   # We create the password policy as part of `modernisation-platform-terraform-baselines` so
@@ -44,8 +43,7 @@ resource "time_sleep" "wait_30_seconds" {
 
 # Create assumable roles with managed policies
 module "iam_assumable_roles" {
-  source               = "terraform-aws-modules/iam/aws//modules/iam-assumable-roles"
-  version              = "~> 5.5"
+  source               = "git::https://github.com/terraform-aws-modules/terraform-aws-iam.git//modules/iam-assumable-roles?ref=25e2bf9f9f4757a7014b55db981be9d2beeab445"
   max_session_duration = 43200
 
   # Admin role
@@ -73,9 +71,8 @@ module "iam_assumable_roles" {
 
 # Attach created users to a AWS IAM group, with several policies
 module "iam_group_admins_with_policies" {
-  source  = "terraform-aws-modules/iam/aws//modules/iam-group-with-policies"
-  version = "~> 5.5"
-  name    = "superadmins"
+  source = "git::https://github.com/terraform-aws-modules/terraform-aws-iam.git//modules/iam-group-with-policies?ref=25e2bf9f9f4757a7014b55db981be9d2beeab445"
+  name   = "superadmins"
 
   group_users = [
     for user in module.iam_user : user.iam_user_name
@@ -100,8 +97,7 @@ module "iam_group_admins_with_policies" {
 # Create each user
 module "iam_user" {
   for_each              = local.superadmin_users
-  source                = "terraform-aws-modules/iam/aws//modules/iam-user"
-  version               = "~> 5.5"
+  source                = "git::https://github.com/terraform-aws-modules/terraform-aws-iam.git//modules/iam-user?ref=25e2bf9f9f4757a7014b55db981be9d2beeab445"
   name                  = "${each.key}-superadmin"
   force_destroy         = true
   pgp_key               = each.value
