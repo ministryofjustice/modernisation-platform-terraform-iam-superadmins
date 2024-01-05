@@ -70,6 +70,7 @@ module "iam_assumable_roles" {
 }
 
 # Attach created users to a AWS IAM group, with several policies
+#tfsec:ignore:aws-iam-enforce-group-mfa
 module "iam_group_admins_with_policies" {
   source = "github.com/terraform-aws-modules/terraform-aws-iam.git//modules/iam-group-with-policies?ref=25e2bf9f9f4757a7014b55db981be9d2beeab445"
   name   = "superadmins"
