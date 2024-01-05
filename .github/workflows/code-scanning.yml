@@ -59,13 +59,13 @@ jobs:
         uses: aquasecurity/tfsec-action@b466648d6e39e7c75324f25d83891162a721f2d6 # v1.0.3
         with:
           additional_args: '--format sarif --out tfsec.sarif --exclude aws-ssm-secret-use-customer-key,github-repositories-private,aws-vpc-no-excessive-port-access,github-repositories-require-signed-commits'
-      - name: Print File Contents
-        run: cat tfsec.sarif
       - name: Upload SARIF file
         if: success() || failure()
         uses: github/codeql-action/upload-sarif@cdcdbb579706841c47f7063dda365e292e5cad7a # v2.13.4
         with:
           sarif_file: tfsec.sarif
+      - name: Print File Contents
+        run: cat tfsec.sarif          
   checkov:
     name: checkov
     runs-on: ubuntu-latest
