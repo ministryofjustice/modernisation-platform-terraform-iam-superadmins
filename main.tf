@@ -21,7 +21,7 @@ locals {
 
 # Create the initial IAM account referential
 module "iam_account" {
-  source        = "git::https://github.com/terraform-aws-modules/terraform-aws-iam.git//modules/iam-account?ref=25e2bf9f9f4757a7014b55db981be9d2beeab445"
+  source        = "github.com/terraform-aws-modules/terraform-aws-iam.git//modules/iam-account?ref=25e2bf9f9f4757a7014b55db981be9d2beeab445"
   account_alias = var.account_alias
 
   # We create the password policy as part of `modernisation-platform-terraform-baselines` so
@@ -43,7 +43,7 @@ resource "time_sleep" "wait_30_seconds" {
 
 # Create assumable roles with managed policies
 module "iam_assumable_roles" {
-  source               = "git::https://github.com/terraform-aws-modules/terraform-aws-iam.git//modules/iam-assumable-roles?ref=25e2bf9f9f4757a7014b55db981be9d2beeab445"
+  source               = "github.com/terraform-aws-modules/terraform-aws-iam.git//modules/iam-assumable-roles?ref=25e2bf9f9f4757a7014b55db981be9d2beeab445"
   max_session_duration = 43200
 
   # Admin role
@@ -70,8 +70,9 @@ module "iam_assumable_roles" {
 }
 
 # Attach created users to a AWS IAM group, with several policies
+#tfsec:ignore:aws-iam-enforce-group-mfa
 module "iam_group_admins_with_policies" {
-  source = "git::https://github.com/terraform-aws-modules/terraform-aws-iam.git//modules/iam-group-with-policies?ref=25e2bf9f9f4757a7014b55db981be9d2beeab445"
+  source = "github.com/terraform-aws-modules/terraform-aws-iam.git//modules/iam-group-with-policies?ref=25e2bf9f9f4757a7014b55db981be9d2beeab445"
   name   = "superadmins"
 
   group_users = [
@@ -97,7 +98,7 @@ module "iam_group_admins_with_policies" {
 # Create each user
 module "iam_user" {
   for_each              = local.superadmin_users
-  source                = "git::https://github.com/terraform-aws-modules/terraform-aws-iam.git//modules/iam-user?ref=25e2bf9f9f4757a7014b55db981be9d2beeab445"
+  source                = "github.com/terraform-aws-modules/terraform-aws-iam.git//modules/iam-user?ref=25e2bf9f9f4757a7014b55db981be9d2beeab445"
   name                  = "${each.key}-superadmin"
   force_destroy         = true
   pgp_key               = each.value
@@ -127,6 +128,7 @@ data "aws_iam_policy_document" "assume_role" {
 
 # AWS IAM Policy Document for Force MFA, as taken from:
 # https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_examples_aws_my-sec-creds-self-manage.html
+#tfsec:ignore:aws-iam-no-policy-wildcards
 data "aws_iam_policy_document" "force_mfa" {
   version = "2012-10-17"
 
