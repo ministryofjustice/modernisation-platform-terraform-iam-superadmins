@@ -127,6 +127,7 @@ data "aws_iam_policy_document" "assume_role" {
 
 # AWS IAM Policy Document for Force MFA, as taken from:
 # https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_examples_aws_my-sec-creds-self-manage.html
+#tfsec:ignore:aws-iam-no-policy-wildcards
 data "aws_iam_policy_document" "force_mfa" {
   version = "2012-10-17"
 
