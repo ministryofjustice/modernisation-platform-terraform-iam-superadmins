@@ -7,7 +7,6 @@ locals {
     "david.elliott"    = "keybase:davidkelliott"
     "david.sibley"     = ""
     "ewa.stempel"      = ""
-    "jake.mulley"      = ""
     "stephen.linden"   = ""
     "edward.proctor"   = ""
     "mark.roberts"     = ""
