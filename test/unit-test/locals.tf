@@ -9,7 +9,7 @@ data "http" "environments_file" {
 
 locals {
 
-  superadmin_users        = {    "test.user"     = ""  }
+  superadmin_users = { "test.user" = "" }
 
   application_name = "testing"
 
