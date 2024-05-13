@@ -28,7 +28,6 @@ Next go into the testing folder and run the tests.
 cd test
 go mod download
 go test -v
-go test -v
 ```
 
 Upon successful run, you should see an output similar to the below
