@@ -33,11 +33,11 @@ go test -v
 Upon successful run, you should see an output similar to the below
 
 ```shell
-TestSuperAdmins 2022-07-01T11:34:12+01:00 logger.go:66: Destroy complete! Resources: 17 destroyed.
-TestSuperAdmins 2022-07-01T11:34:12+01:00 logger.go:66:
+TestSuperAdmins 2024-05-15T00:51:59+01:00 logger.go:66: Destroy complete! Resources: 17 destroyed.
+TestSuperAdmins 2024-05-15T00:51:59+01:00 logger.go:66:
+--- PASS: TestSuperAdmins (55.15s)
 PASS
-ok  	terraform_iam_superadmin_test.go	74.301s
-
+ok      github.com/ministryofjustice/modernisation-platform-terraform-iam-superadmins   55.671s
 ```
 
 ## References

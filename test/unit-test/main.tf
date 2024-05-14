@@ -1,12 +1,12 @@
 # Create the initial IAM account referential
-module "iam_account" {
-  source        = "github.com/terraform-aws-modules/terraform-aws-iam.git//modules/iam-account?ref=25e2bf9f9f4757a7014b55db981be9d2beeab445"
-  account_alias = local.environment_management.account_ids["testing-test"]
+# module "iam_account" {
+#   source        = "github.com/terraform-aws-modules/terraform-aws-iam.git//modules/iam-account?ref=25e2bf9f9f4757a7014b55db981be9d2beeab445"
+#   account_alias = local.environment_management.account_ids["testing-test"]
 
-  # We create the password policy as part of `modernisation-platform-terraform-baselines` so
-  # we don't need to do it here as well
-  create_account_password_policy = false
-}
+#   # We create the password policy as part of `modernisation-platform-terraform-baselines` so
+#   # we don't need to do it here as well
+#   create_account_password_policy = false
+# }
 
 # sleep to allow time for user creation
 resource "time_sleep" "wait_30_seconds" {
@@ -32,7 +32,7 @@ module "iam_assumable_roles" {
 
   # Poweruser role
   create_poweruser_role       = true
-  poweruser_role_name         = "developer"
+  poweruser_role_name         = "developerTest"
   poweruser_role_requires_mfa = true
 
   # Read-only role

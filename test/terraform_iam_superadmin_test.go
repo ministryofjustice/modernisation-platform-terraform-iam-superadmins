@@ -18,7 +18,7 @@ func TestSuperAdmins(t *testing.T) {
 
 	terraform.InitAndApply(t, terraformOptions)
 
-	superadminPasswords := terraform.Output(t, terraformOptions, "superadmin_passwords")
+	superadminUsernames := terraform.Output(t, terraformOptions, "superadmin_usernames")
 
-	assert.Contains(t, superadminPasswords, "superadmin_passwords =")
+	assert.Contains(t, superadminUsernames, "test.user-superadmin")
 }
