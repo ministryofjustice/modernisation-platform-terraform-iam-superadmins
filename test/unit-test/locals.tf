@@ -2,6 +2,8 @@
 # (when we want to assume a role in the MP, for instance)
 data "aws_organizations_organization" "root_account" {}
 
+data "aws_caller_identity" "current" {}
+
 # Get the environments file from the main repository
 data "http" "environments_file" {
   url = "https://raw.githubusercontent.com/ministryofjustice/modernisation-platform/main/environments/${local.application_name}.json"
@@ -30,11 +32,11 @@ locals {
     { "source-code" = "https://github.com/ministryofjustice/modernisation-platform" }
   )
 
-  environment = trimprefix("testing-test", "${var.networking[0].application}-")
+  environment = trimprefix(terraform.workspace, "${var.networking[0].application}-")
   vpc_name    = var.networking[0].business-unit
   subnet_set  = var.networking[0].set
 
-  is_live       = [substr("testing-test", length(local.application_name), length(terraform.workspace)) == "-production" || substr(terraform.workspace, length(local.application_name), length(terraform.workspace)) == "-preproduction" ? "live" : "non-live"]
+  is_live       = [substr(terraform.workspace, length(local.application_name), length(terraform.workspace)) == "-production" || substr(terraform.workspace, length(local.application_name), length(terraform.workspace)) == "-preproduction" ? "live" : "non-live"]
   provider_name = "core-vpc-${local.environment}"
 
 }
