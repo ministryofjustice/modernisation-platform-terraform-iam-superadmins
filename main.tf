@@ -12,7 +12,7 @@ locals {
     "mark.roberts"     = ""
     "aaron.robinson"   = ""
     "richard.green"    = ""
-    "sukeshreddy.gade" = ""
+    "sukesh.reddygade" = ""
     "khatra.farah"     = ""
     "mike.reid"        = ""
     "kudzai.mtoko"     = ""
