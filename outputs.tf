@@ -8,6 +8,6 @@ output "superadmin_passwords" {
 }
 
 output "iam_user_names" {
-  value = [ for user in module.iam_user : user.iam_user_name ]
+  value       = [for user in module.iam_user : user.iam_user_name]
   description = "List of usernames for simple validation"
 }
