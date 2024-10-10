@@ -4,17 +4,17 @@
 # - if a keybase key is provided, it will also create their user login profile
 locals {
   superadmin_users = {
+    "aaron.robinson"   = ""
     "david.elliott"    = "keybase:davidkelliott"
     "david.sibley"     = ""
     "ewa.stempel"      = ""
     "edward.proctor"   = ""
+    "khatra.farah"     = ""
+    "kudzai.mtoko"     = ""
     "mark.roberts"     = ""
-    "aaron.robinson"   = ""
+    "mike.reid"        = ""
     "richard.green"    = ""
     "sukesh.reddygade" = ""
-    "khatra.farah"     = ""
-    "mike.reid"        = ""
-    "kudzai.mtoko"     = ""
   }
 }
 
@@ -97,7 +97,7 @@ module "iam_group_admins_with_policies" {
 # Create each user
 module "iam_user" {
   for_each              = local.superadmin_users
-  source                = "github.com/terraform-aws-modules/terraform-aws-iam.git//modules/iam-user?ref=25e2bf9f9f4757a7014b55db981be9d2beeab445"
+  source                = "github.com/terraform-aws-modules/terraform-aws-iam.git//modules/iam-user?ref=617f4cbaef43e437233468dbeb743acf4069894e"
   name                  = "${each.key}-superadmin"
   force_destroy         = true
   pgp_key               = each.value
