@@ -226,7 +226,8 @@ data "aws_iam_policy_document" "force_mfa" {
       "iam:ListMFADevices",
       "iam:ListVirtualMFADevices",
       "iam:ResyncMFADevice",
-      "sts:GetSessionToken"
+      "sts:GetSessionToken",
+      "iam:ChangePassword"
     ]
     resources = ["*"]
     condition {
