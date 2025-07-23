@@ -4,3 +4,4 @@
 *.tfstate
 .DS_Store
 .idea
+megalinter-reports
