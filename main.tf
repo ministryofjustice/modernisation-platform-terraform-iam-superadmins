@@ -46,17 +46,17 @@ module "iam_assumable_roles" {
   max_session_duration = 43200
 
   # Admin role
-  create_admin_role         = true
+  create_admin_role       = true
   admin_role_name         = "superadmin"
   admin_role_requires_mfa = true
 
   # Poweruser role
   create_poweruser_role       = true
-  poweruser_role_name           = "developer"
+  poweruser_role_name         = "developer"
   poweruser_role_requires_mfa = true
 
   # Read-only role
-  create_readonly_role       = true 
+  create_readonly_role       = true
   readonly_role_name         = "readonly"
   readonly_role_requires_mfa = true
 
