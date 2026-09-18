@@ -1,11 +1,12 @@
 # Modernisation Platform Terraform IAM Superadmins Module
+
 [![Standards Icon]][Standards Link] [![Format Code Icon]][Format Code Link] [![Scorecards Icon]][Scorecards Link][![SCA Icon]][SCA Link] [![Terraform SCA Icon]][Terraform SCA Link]
 
 This repository holds a Terraform module that creates set IAM accounts and associated configuration, such as: account password policies, administrator groups, user accounts.
 
 ## Usage
 
-```
+```terraform
 module "iam" {
   source        = "github.com/ministryofjustice/modernisation-platform-terraform-iam-superadmins"
   account_alias = "aws-account-alias"
